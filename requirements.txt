@@ -10,3 +10,4 @@ tox
 virtualenv
 coveralls
 sphinx_rtd_theme
+future
