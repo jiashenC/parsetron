@@ -10,6 +10,8 @@ import logging
 import copy
 from collections import deque
 from collections import Counter
+from past.types import unicode, basestring
+from past.builtins import xrange
 
 __doc__ = \
     """
@@ -88,7 +90,7 @@ class MetaGrammar(type):
         return super(MetaGrammar, typ).__new__(typ, name, bases, dct)
 
 
-class Grammar(object):
+class Grammar(object, metaclass=MetaGrammar):
     """
     Grammar user interface. Users should inherit this grammar and define a
     final grammar GOAL as class variable.
@@ -114,7 +116,9 @@ class Grammar(object):
     __metaclass__ = MetaGrammar
 
     def __new__(cls):
+        print(cls.__dict__['_grammar_'])
         return cls.__dict__['_grammar_']
+
 
     @staticmethod
     def test():
